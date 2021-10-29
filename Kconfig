@@ -1,0 +1,4 @@
+config PASHAHOD_CHDEV
+  tristate "Pashshod char dev"
+  default y
+
