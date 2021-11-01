@@ -19,7 +19,7 @@ static int dev_major = 0;
 static struct class *pashahod_chdev_class = NULL;
 
 // array of pashahod_chdev_device_data for
-static struct pashahod_chdev_device_data pashahod_chdev_data;;
+static struct pashahod_chdev_device_data pashahod_chdev_data;
 
 
 static int pashahod_chdev_open(struct inode *inode, struct file *file)
@@ -60,7 +60,7 @@ static const struct file_operations pashahod_chdev_fops = {
     .release    = pashahod_chdev_release,
     .unlocked_ioctl = pashahod_chdev_ioctl,
     .read       = pashahod_chdev_read,
-    .write       = pashahod_chdev_write
+    .write       = pashahod_chdev_write,
 };
 
 static int __init pashahod_chdev_init(void)
