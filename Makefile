@@ -5,7 +5,7 @@ BUILD_DIR := build/
 INC_DIR := include/
 KERNEL_SRC := /lib/modules/$(shell uname -r)/build
 CONFIG_PASHAHOD_CHDEV ?= m
-
+INSTDIR := /my-module
 MNAME   := $(DRVNAME).ko
 SRCS := $(addprefix src/, pashahod_chdev.c)
 OBJS := $(SRCS:.c=.o)
@@ -22,7 +22,10 @@ build:
 	$(MAKE) -C $(KERNEL_SRC) M=$(PWDDIR) modules
 
 modules_install:
-	$(MAKE) -C $(KERNEL_SRC) M=$(SRC) modules_install
+	@echo "Install $(DRVNAME) driver"
+	@if test -d "$(INSTDIR)"; then :; else mkdir $(INSTDIR); fi;
+	cp $(MNAME) $(INSTDIR)
+	depmod -a
 
 clean:
 	@echo "Clean $(DRVNAME)"
