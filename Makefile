@@ -3,7 +3,7 @@ PWDDIR  := $(shell pwd)
 SRC_DIRS :=src/
 BUILD_DIR := build/
 INC_DIR := include/
-KERN_DIR := /lib/modules/$(shell uname -r)/build
+KERNEL_SRC := /lib/modules/$(shell uname -r)/build
 
 MNAME   := $(DRVNAME).ko
 SRCS := $(addprefix src/, pashahod_chdev.c)
@@ -18,7 +18,10 @@ all: build
 build:
 	@echo "Build ${DRVNAME} driver"
 	@echo "OBJS $(OBJS)"
-	$(MAKE) -C $(KERN_DIR) M=$(PWDDIR) modules
+	$(MAKE) -C $(KERNEL_SRC) M=$(PWDDIR) modules
+
+modules_install:
+	$(MAKE) -C $(KERNEL_SRC) M=$(SRC) modules_install
 
 clean:
 	@echo "Clean $(DRVNAME)"
