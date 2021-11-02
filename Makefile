@@ -4,6 +4,7 @@ SRC_DIRS :=src/
 BUILD_DIR := build/
 INC_DIR := include/
 KERNEL_SRC := /lib/modules/$(shell uname -r)/build
+CONFIG_PASHAHOD_CHDEV ?= m
 
 MNAME   := $(DRVNAME).ko
 SRCS := $(addprefix src/, pashahod_chdev.c)
